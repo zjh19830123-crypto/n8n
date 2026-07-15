@@ -36,8 +36,12 @@ RUN ln -s /etc/sv/tailscale /etc/service/
 RUN curl -fsSL https://tailscale.com/install.sh | sh
 
 RUN echo '#!/bin/sh' > /start.sh \
-&& echo 'sleep 4' >> /start.sh \
-&& echo 'tailscale up --auth-key=tskey-auth-kxgLdVzXuf11CNTRL-C36Hymfa9UQHiCeHnDugUQrJizyxzFN8Z' >> /start.sh \
+&& echo 'echo "等待tailscaled启动..."' >> /start.sh \
+&& echo 'sleep 10' >> /start.sh \
+&& echo 'echo "开始注册设备"' >> /start.sh \
+&& echo 'tailscale up --force-reauth --auth-key=tskey-auth-kxgLdVzXuf11CNTRL-C36Hymfa9UQHiCeHnDugUQrJizyxzFN8Z' >> /start.sh \
+&& echo 'echo "注册完成，查看设备状态"' >> /start.sh \
+&& echo 'tailscale status' >> /start.sh \
 && chmod +x /start.sh
 
 USER root
