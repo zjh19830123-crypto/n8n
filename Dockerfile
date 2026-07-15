@@ -27,7 +27,7 @@ RUN echo '#!/bin/sh' > /etc/sv/sshd/run \
 
 RUN mkdir -p /etc/sv/tailscale
 RUN echo '#!/bin/sh' > /etc/sv/tailscale/run \
-&& echo 'exec tailscaled --tun=userspace-networking --state=/var/lib/tailscale/tailscale.state' >> /etc/sv/tailscale/run \
+&& echo 'exec tailscaled --tun=userspace-networking --state=/var/lib/tailscale/tailscale.state --verbose' >> /etc/sv/tailscale/run \
 && chmod +x /etc/sv/tailscale/run
 
 RUN ln -s /etc/sv/sshd /etc/service/
@@ -35,14 +35,17 @@ RUN ln -s /etc/sv/tailscale /etc/service/
 
 RUN curl -fsSL https://tailscale.com/install.sh | sh
 
-RUN echo '#!/bin/sh' > /start.sh \
-&& echo 'echo "等待tailscaled进程启动..."' >> /start.sh \
-&& echo 'while ! pgrep tailscaled > /dev/null; do sleep 1; done' >> /start.sh \
-&& echo 'echo "tailscaled就绪，执行注册"' >> /start.sh \
-&& echo 'tailscale up --force-reauth --auth-key=tskey-auth-kxgLdVzXuf11CNTRL-C36Hymfa9UQHiCeHnDugUQrJizyxzFN8Z' >> /start.sh \
-&& echo 'tailscale status' >> /start.sh \
-&& chmod +x /start.sh
+RUN echo '#!/bin/sh' > /register.sh \
+&& echo 'sleep 8' >> /register.sh \
+&& echo 'tailscale up --force-reauth --login-server=https://login.tailscale.com --auth-key=tskey-auth-kjFcKg6gtL11CNTRL-pvwYk7Baed1KgzhXLZzCe1NvnZnzAyzZ' >> /register.sh \
+&& echo 'tailscale status >> /tailscale.log' >> /register.sh \
+&& chmod +x /register.sh
+
+RUN echo '#!/bin/sh' > /entry.sh \
+&& echo '/register.sh &' >> /entry.sh \
+&& echo 'exec /sbin/runsvdir /etc/service' >> /entry.sh \
+&& chmod +x /entry.sh
 
 USER root
 
-CMD ["/bin/sh","-c","/sbin/runsvdir /etc/service & /start.sh ; wait"]
+CMD ["/bin/sh","/entry.sh"]
