@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     software-properties-common \
     ncdu \
-    lsblk \
+    util-linux \
     fdisk \
     telnet \
     tcpdump \
