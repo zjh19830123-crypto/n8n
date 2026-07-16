@@ -43,9 +43,9 @@ RUN apt-get update && apt-get install -y \
     ripgrep \
     watch \
     bc \
-    passwd
+    passwd \
+    default-jdk
 
-RUN add-apt-repository ppa:openjdk-r/ppa && apt update && apt install -y default-jdk
 RUN pip3 install --upgrade pip
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
