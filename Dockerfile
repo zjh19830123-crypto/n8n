@@ -46,8 +46,6 @@ RUN apt-get update && apt-get install -y \
     passwd \
     default-jdk
 
-RUN pip3 install --upgrade pip
-
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 USER root
