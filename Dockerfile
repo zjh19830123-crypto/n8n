@@ -54,29 +54,10 @@ RUN apt-get update && apt-get install -y \
     passwd \
     default-jdk \
     man-db \
-    mlocate \
     diffutils \
     patch \
-    column \
     groff-base \
-    hostnamectl \
-    timedatectl \
-    lspci \
-    lsusb \
     mtr \
-    ipcalc \
-    blkid \
-    lsblk \
-    swaputils \
-    xxd \
-    base64 \
-    spell \
-    cal \
-    factor \
-    seq \
-    iconv \
-    localectl \
-    pstree \
     bsdmainutils
 
 RUN yes | unminimize
