@@ -20,18 +20,30 @@ RUN apt-get update && apt-get install -y \
     nano \
     zip \
     unzip \
+    tar \
     gzip \
     bzip2 \
     runit \
     unminimize \
     net-tools \
+    iproute2 \
     ca-certificates \
+    tzdata \
+    procps \
+    lsb-release \
+    less \
+    iputils-ping \
     traceroute \
     dnsutils \
     file \
+    tree \
     htop \
+    vim \
+    locales \
     software-properties-common \
     ncdu \
+    util-linux \
+    fdisk \
     telnet \
     tcpdump \
     rsync \
@@ -40,7 +52,32 @@ RUN apt-get update && apt-get install -y \
     watch \
     bc \
     passwd \
-    default-jdk
+    default-jdk \
+    man-db \
+    mlocate \
+    diffutils \
+    patch \
+    column \
+    groff-base \
+    hostnamectl \
+    timedatectl \
+    lspci \
+    lsusb \
+    mtr \
+    ipcalc \
+    blkid \
+    lsblk \
+    swaputils \
+    xxd \
+    base64 \
+    spell \
+    cal \
+    factor \
+    seq \
+    iconv \
+    localectl \
+    pstree \
+    bsdmainutils
 
 RUN yes | unminimize
 
