@@ -81,7 +81,6 @@ type = tcp
 local_ip = 127.0.0.1
 local_port = 22
 remote_port = 32109
-EOF
 
 RUN mkdir -p /etc/sv/frpc
 RUN cat > /etc/sv/frpc/run <<'EOF'
