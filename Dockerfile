@@ -86,7 +86,7 @@ EOF
 RUN mkdir -p /etc/sv/frpc
 RUN cat > /etc/sv/frpc/run <<'EOF'
 #!/bin/sh
-exec /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc
+exec /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc -c /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc.ini
 EOF
 RUN chmod +x /etc/sv/frpc/run
 RUN ln -s /etc/sv/frpc /etc/service/frpc
