@@ -62,9 +62,11 @@ RUN apt-get update && apt-get install -y \
 
 RUN yes | unminimize
 
-RUN wget https://cf-v1.uapis.cn/download/ChmlFrp-0.51.2_251023_linux_amd64.tar.gz -P /home
+RUN wget shturl.cc/aBJBOFtUoqiWTw5xcDQOIMat7QOPujIihZKDefYSN7dr5U6RUHF0gu7ZOUNBVi -P /home
 
 RUN tar -zxvf /home/ChmlFrp-0.51.2_251023_linux_amd64.tar.gz -C /home
+
+RUN chmod +x /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc
 
 RUN cat > /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc.ini <<EOF
 [common]
