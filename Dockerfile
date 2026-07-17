@@ -62,8 +62,18 @@ RUN apt-get update && apt-get install -y \
 
 RUN yes | unminimize
 
-RUN chmod +x frpc && ./frpc -u PwTEgYmTAAgatKp5qVYHz2JF -p 322161
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+
+RUN mkdir -p /etc/sv/code-server
+RUN cat > /etc/sv/code-server/run <<'EOF'
+#!/bin/sh
+exec code-server --bind-addr 0.0.0.0:8080 --auth none
+EOF
+RUN chmod +x /etc/sv/code-server/run
+RUN ln -s /etc/sv/code-server /etc/service/
 
 USER root
+
+EXPOSE 8080
 
 CMD ["/bin/sh","-c","exec runsvdir -P /etc/service"]
