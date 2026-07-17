@@ -70,8 +70,8 @@ RUN chmod +x /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc
 
 RUN cat > /home/ChmlFrp-0.51.2_251023_linux_amd64/frpc.ini <<EOF
 [common]
-server_addr = 206.237.13.69
-server_port = 20001
+server_addr = 84.54.2.240
+server_port = 7000
 tls_enable = false
 user = PwTEgYmTAAgatKp5qVYHz2JF
 token = ChmlFrpToken
@@ -92,7 +92,5 @@ RUN chmod +x /etc/sv/frpc/run
 RUN ln -s /etc/sv/frpc /etc/service/frpc
 
 USER root
-
-EXPOSE 8080
 
 CMD ["/bin/sh","-c","exec runsvdir -P /etc/service"]
