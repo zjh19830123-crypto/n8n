@@ -54,6 +54,9 @@ RUN apt-get update && apt-get install -y \
     openssh-server \
     ubuntu-minimal \
     ubuntu-server-minimal
+RUN apt install language-pack-zh-hans xfce4-terminal -y
+RUN locale-gen zh_CN.UTF-8
+RUN update-locale LANG=zh_CN.UTF-8 LC_ALL=zh_CN.UTF-8
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN mkdir -p /etc/sv/sshd
 RUN cat > /etc/sv/sshd/run <<'EOF'
